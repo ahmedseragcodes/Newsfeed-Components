@@ -89,6 +89,18 @@ const data = [
   }
 ];
 
+//New Article to be incorporated
+
+const newData={
+  title: "Using React Hooks to Build A Drag & Drop",
+  date: "January 13, 2021",
+  firstParagraph: "test",
+  secondParagraph: "test",
+  thirdParagraph: "test"
+}
+
+data.push(newData);
+
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
@@ -114,3 +126,72 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+
+function articleMaker(data){
+
+//Article DIV
+const article=document.createElement("div");
+article.classList.add("article");
+
+//Title Heading
+const titleHeading=document.createElement("h2");
+titleHeading.textContent=data.title;
+article.append(titleHeading);
+
+//P Date
+const pDate=document.createElement("p");
+pDate.textContent=data.date;
+pDate.classList.add("date");
+article.append(pDate);
+
+//First Paragraph
+const firstP=document.createElement("p");
+firstP.textContent=data.firstParagraph;
+article.append(firstP);
+
+//Second Paragraph
+const secondP=document.createElement("p");
+secondP.textContent=data.secondParagraph;
+article.append(secondP);
+
+//Third Paragraph
+const thirdP=document.createElement("p");
+thirdP.textContent=data.thirdParagraph;
+article.append(thirdP);
+
+//Span Expansion
+
+const spanPlus=document.createElement("span");
+spanPlus.classList.add("expandButton");
+spanPlus.textContent="+";
+article.append(spanPlus);
+
+//Span Expansion Event Listener
+
+spanPlus.addEventListener("click", function(event){
+  article.classList.add("article-open");
+})
+
+//Span Collapse
+const spanMinus=document.createElement("span");
+spanMinus.textContent="-";
+spanMinus.classList.add("collapseButton");
+article.append(spanMinus);
+
+//Span Collapse Event Listener
+spanMinus.addEventListener("click", function(event){
+  article.classList.remove("article-open");
+})
+
+//Append to Body and Return 
+
+document.body.append(article);
+return article;
+}
+
+//Iterating Through Array
+data.forEach(function(dataPiece){
+  articleMaker(dataPiece);
+})
+

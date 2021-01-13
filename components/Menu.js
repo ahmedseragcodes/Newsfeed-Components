@@ -1,5 +1,15 @@
 // This is the data we will be using, study it but don't change anything, yet.
 
+let menuItemsTwo = 
+[
+  {item:'Students'},
+  {item: 'Faculty'},
+  {item: "What's New"},
+  {item: 'Tech Trends'},
+  {item: 'Music'},
+  {item: 'Log Out'}
+];
+
 let menuItems = [
   'Students',
   'Faculty',
@@ -31,3 +41,45 @@ let menuItems = [
 
   Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned menu to the header.
 */
+
+
+//Menu Div
+const menu=document.createElement("div");
+menu.classList.add("menu");
+
+//Menu UL
+const menuList=document.createElement("ul");
+menu.append(menuList);
+function menuMaker(menuItems){
+
+//Menu List Item / LI
+const menuListItem=document.createElement("li");
+menuListItem.textContent=menuItems;
+menuList.append(menuListItem);
+
+//Expand Sandwich Menu / Event Listener
+
+
+//Single Click Opens Menu Div
+const sandwichMenu=document.querySelector(".menu-button");
+sandwichMenu.addEventListener("click", function(event){
+  menu.classList.add("menu--open")
+})
+
+//Double Click Closes Menu Div
+sandwichMenu.addEventListener("dblclick", function(event){
+  menu.classList.remove("menu--open")
+})
+
+//Append to Header
+  const header=document.querySelector(".header");
+  header.append(menu);
+  return menu;
+
+
+}
+
+menuItems.forEach(function(item){
+  menuMaker(item);
+})
+
